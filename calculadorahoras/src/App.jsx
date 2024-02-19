@@ -4,35 +4,36 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [hi, setHi] = useState(0)
-  const [mi, setMi] = useState(0)
-  const [hf, setHf] = useState(0)
-  const [mf, setMf] = useState(0)
-  const [resultado, setResultado] = useState("Resultado")
+  const [hi, setHi] = useState(0);
+  const [mi, setMi] = useState(0);
+  const [hf, setHf] = useState(0);
+  const [mf, setMf] = useState(0);
+  const [resultado, setResultado] = useState("Resultado");
 
-  const soma = () =>{
-    let somaHora = Number(hi.value) + Number(hf.value);
-    let somaMinuto = Number(mi.value) + Number(mf.value);
-    while(somaMinuto > 59){
-        somaMinuto -= 60;
-        somaHora ++;
+  const soma = () => {
+    let somaHora = Number(hi) + Number(hf);
+    let somaMinuto = Number(mi) + Number(mf);
+    
+    while (somaMinuto > 59) {
+      somaMinuto -= 60;
+      somaHora++;
     }
+    
     setResultado(`${somaHora}:${somaMinuto}`);
-}
+  }
 
-  const sub = () =>{
-    let momentoInicial = hi.value*60 + mi.value;
-    let momentoFinal = hf.value*60 + mf.value;
-    let resultadoEmMinutos = momentoInicial - momentoFinal;
-    if(resultadoEmMinutos < 0){
-        resultadoEmMinutos *= -1;
-    }
+  const sub = () => {
+    let momentoInicial = hi * 60 + Number(mi);
+    let momentoFinal = hf * 60 + Number(mf);
+    let resultadoEmMinutos = Math.abs(momentoInicial - momentoFinal);
     let resultadoEmHoras = 0;
-    while(resultadoEmMinutos > 59){
-        resultadoemHoras ++;
-        resultadoEmHoras -+ 60;
+
+    while (resultadoEmMinutos > 59) {
+      resultadoEmHoras++;
+      resultadoEmMinutos -= 60;
     }
-    setResultado(`${resultadoEmHorasHora}:${resultadoEmMinutos}`);
+
+    setResultado(`${resultadoEmHoras}:${resultadoEmMinutos}`);
   }
   
 
